@@ -27,26 +27,27 @@ export const ProductListToolbar = (props) => (
         sx={{ m: 1 }}
         variant="h4"
       >
-        Products
+        {props.title}
       </Typography>
       <Box sx={{ m: 1 }}>
-        <Button
+        {/* <Button
           startIcon={(<UploadIcon fontSize="small" />)}
           sx={{ mr: 1 }}
         >
           Import
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           startIcon={(<DownloadIcon fontSize="small" />)}
           sx={{ mr: 1 }}
         >
           Export
-        </Button>
+        </Button> */}
         <Button
           color="primary"
           variant="contained"
+          href={props.link}
         >
-          Add products
+          Add {props.title}
         </Button>
       </Box>
     </Box>
@@ -68,7 +69,7 @@ export const ProductListToolbar = (props) => (
                   </InputAdornment>
                 )
               }}
-              placeholder="Search product"
+              placeholder={"Search "+props.title}
               variant="outlined"
             />
           </Box>
