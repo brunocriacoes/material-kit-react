@@ -20,7 +20,7 @@ const Products = () => (
       }}
     >
       <Container maxWidth={false}>
-        <ProductListToolbar title="Brands" link="/" />
+        <ProductListToolbar title="Brands" link="/brands/new" />
         <Box sx={{ pt: 3 }}>
           <Grid
             container
