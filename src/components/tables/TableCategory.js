@@ -16,16 +16,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const orders = [
   {
     id: uuid(),
-    name: "Balde de gelo",
-    description: "Produto ideal",
-    price: 5000,
-    inventory: 15,
-    category: "Brinde",
-    brand: "Lu Plastic"
+    name: "Brinde",
+    description: "Brindes e Promocional",
   }
 ];
 
-export const LatestOrders = (props) => (
+export const TableCategory = (props) => (
   <Card {...props}>
     <CardHeader title="Lista" />
     <PerfectScrollbar>
@@ -34,10 +30,7 @@ export const LatestOrders = (props) => (
           <TableHead>
             <TableRow>
               <TableCell> Nome </TableCell>
-              <TableCell> Preço </TableCell>
-              <TableCell> Estoque </TableCell>
-              <TableCell> Categoria </TableCell>
-              <TableCell> Marca </TableCell>
+              <TableCell> Description </TableCell>
               <TableCell></TableCell>
               <TableCell></TableCell>
             </TableRow>
@@ -49,10 +42,7 @@ export const LatestOrders = (props) => (
                 key={order.id}
               >
                 <TableCell> {order.name} </TableCell>
-                <TableCell> {order.price} </TableCell>
-                <TableCell> {order.inventory} </TableCell>
-                <TableCell> {order.category} </TableCell>
-                <TableCell> {order.brand} </TableCell>
+                <TableCell> {order.description} </TableCell>
                 <TableCell> <EditIcon style={{ color: '#05f' }} /> </TableCell>
                 <TableCell> <DeleteIcon style={{ color: '#C00' }} /> </TableCell>
               </TableRow>

@@ -25,7 +25,7 @@ const orders = [
   }
 ];
 
-export const LatestOrders = (props) => (
+export const TableProduct = (props) => (
   <Card {...props}>
     <CardHeader title="Lista" />
     <PerfectScrollbar>
