@@ -12,48 +12,54 @@ import {
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useState, useEffect  } from 'react';
 
+import { useState, useEffect  } from 'react';
 import api from '../../components/api';
 import Cookies from 'js-cookie';
 
-const orders = [
-  {
-    id: uuid(),
-    name: "Brinde",
-    description: "Brindes e Promocional",
-  }
-];
+export const TableCategory = (props) => {
 
-export const TableCategory = (props) => (
-  <Card {...props}>
-    <CardHeader title="Lista" />
-    <PerfectScrollbar>
-      <Box sx={{ minWidth: 800 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell> Nome </TableCell>
-              <TableCell> Description </TableCell>
-              <TableCell></TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {orders.map((order) => (
-              <TableRow
-                hover
-                key={order.id}
-              >
-                <TableCell> {order.name} </TableCell>
-                <TableCell> {order.description} </TableCell>
-                <TableCell> <EditIcon style={{ color: '#05f' }} /> </TableCell>
-                <TableCell> <DeleteIcon style={{ color: '#C00' }} /> </TableCell>
+  const [category, setCategory] = useState([])
+
+  useEffect(() => {
+    api.get( '/categoria',{}, {  headers: {"authorization" : Cookies.get('token') }  } ).then( res => {
+      if( !!res.data ) {
+        setCategory(res.data)
+      }
+      // console.log(res)
+    })
+  }, []);
+
+  return (
+    <Card {...props}>
+      <CardHeader title="Lista" />
+      <PerfectScrollbar>
+        <Box sx={{ minWidth: 800 }}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell> Nome </TableCell>
+                <TableCell> Description </TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Box>
-    </PerfectScrollbar>
-  </Card>
-);
+            </TableHead>
+            <TableBody>
+              {category.map((order) => (
+                <TableRow
+                  hover
+                  key={order.id}
+                >
+                  <TableCell> {order.nome} </TableCell>
+                  <TableCell> {order.descricao} </TableCell>
+                  <TableCell> <EditIcon style={{ color: '#05f' }} /> </TableCell>
+                  <TableCell> <DeleteIcon style={{ color: '#C00' }} /> </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </Box>
+      </PerfectScrollbar>
+    </Card>
+  );
+} 
