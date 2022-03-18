@@ -4,16 +4,21 @@ import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Facebook as FacebookIcon } from '../icons/facebook';
-import { Google as GoogleIcon } from '../icons/google';
+
+import api from '../components/api';
+import Cookies from 'js-cookie';
 
 const Login = () => {
   const router = useRouter();
+
+  if(!!Cookies.get('token')) {
+    router.push('/');
+  }
+
   const formik = useFormik({
     initialValues: {
-      email: 'demo@devias.io',
-      password: 'Password123'
+      email: '',
+      password: ''
     },
     validationSchema: Yup.object({
       email: Yup
@@ -29,8 +34,17 @@ const Login = () => {
         .required(
           'Password is required')
     }),
-    onSubmit: () => {
-      router.push('/');
+    onSubmit: () => {      
+      api.post('/login', {
+        email: formik.values.email,
+        senha: formik.values.password
+      }).then(res => {
+        if (res.ok) {
+          Cookies.set('token', res.data.token);
+          router.push('/');
+        }
+      });
+      return true;
     }
   });
 
@@ -49,7 +63,7 @@ const Login = () => {
         }}
       >
         <Container maxWidth="sm">
-         
+
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ my: 3 }}>
               <Typography
@@ -66,7 +80,7 @@ const Login = () => {
                 Sign in on the internal platform
               </Typography>
             </Box>
-            
+
             <TextField
               error={Boolean(formik.touched.email && formik.errors.email)}
               fullWidth

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect  } from 'react';
 import {
   Box,
   Button,
@@ -9,6 +9,11 @@ import {
   Grid,
   TextField
 } from '@mui/material';
+
+import api from '../../components/api';
+import Cookies from 'js-cookie';
+
+
 
 const states = [
   {
@@ -26,6 +31,11 @@ const states = [
 ];
 
 export const FormCategories = (props) => {
+
+  useEffect(() => {
+    console.log('ler');
+  }, [])
+
   const [values, setValues] = useState({
     name: null,
     description: null,

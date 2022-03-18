@@ -18,6 +18,7 @@ import { NavItem } from './nav-item';
 
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const items = [
   {
@@ -64,6 +65,11 @@ const items = [
     href: '/register',
     icon: (<UserAddIcon fontSize="small" />),
     title: 'Register'
+  },
+  {
+    href: '/logout',
+    icon: (<LogoutIcon fontSize="small" />),
+    title: 'Sair'
   },
   // {
   //   href: '/404',
