@@ -10,30 +10,17 @@ import {
   TextField
 } from '@mui/material';
 
+// import { useState, useEffect  } from 'react';
 import api from '../../components/api';
 import Cookies from 'js-cookie';
 
 
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
 
 export const FormCategories = (props) => {
 
   useEffect(() => {
-    console.log('ler');
+    console.log('edit');
   }, [])
 
   const [values, setValues] = useState({
@@ -48,11 +35,17 @@ export const FormCategories = (props) => {
     });
   };
 
+  const save = ev => {
+    ev.preventDefault()
+    console.log('save')
+  }
+
   return (
     <form
       autoComplete="off"
       noValidate
       {...props}
+      onSubmit={save}
     >
       <Card>
         <CardHeader
@@ -113,6 +106,7 @@ export const FormCategories = (props) => {
           <Button
             color="primary"
             variant="contained"
+            type="submit"
           >
             Save details
           </Button>

@@ -26,7 +26,6 @@ export const TableCategory = (props) => {
       if( !!res.data ) {
         setCategory(res.data)
       }
-      // console.log(res)
     })
   }, []);
 
